@@ -1,4 +1,4 @@
-# Customer Conversion Prediction using Machine Learning
+# Customer Conversion Prediction using Machine Learning (CI/CD pipelines)
 
 This repository contains code and resources for predicting visitor-to-customer conversion in an online store using machine learning. The goal of this project is to help online store owners improve their revenue by accurately predicting which visitors are likely to make a purchase.
 
