@@ -109,7 +109,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
-gfuel_env/
+env_v2c/
 
 # Spyder project settings
 .spyderproject
