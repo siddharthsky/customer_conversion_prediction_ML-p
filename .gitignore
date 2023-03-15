@@ -110,6 +110,8 @@ ENV/
 env.bak/
 venv.bak/
 env_v2c/
+.conda
+conda/
 
 # Spyder project settings
 .spyderproject
