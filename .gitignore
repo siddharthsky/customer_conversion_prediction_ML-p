@@ -112,6 +112,7 @@ venv.bak/
 env_v2c/
 .conda
 conda/
+.vscode/
 
 # Spyder project settings
 .spyderproject
