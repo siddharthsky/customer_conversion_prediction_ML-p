@@ -13,6 +13,8 @@ from sklearn.impute import SimpleImputer
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 
+from src.utils import save_object
+
 @dataclass
 class DataTransformationConfig():
     preprocessor_obj_file_path = os.path.join("artifacts","preprocessor.pkl")
@@ -51,8 +53,8 @@ class DataTransformation():
             
             cat_pipeline=Pipeline(
                 steps=[
-                ("one_hot_encoder",OneHotEncoder),
-                ("scaler",StandardScaler())
+                ("one_hot_encoder",OneHotEncoder()),
+                ("scaler",StandardScaler(with_mean=False))
             ])
 
             logging.info(f"Categorical Column : {categorical_features}")
@@ -63,11 +65,11 @@ class DataTransformation():
                 ("num_pipeline",num_pipeline,numerical_features),
                 ("cat_pipeline",cat_pipeline,categorical_features)
                 ])
-            
+            logging.info(f"PRE PRO Column : {preprocessor}")
             return preprocessor
         
         except Exception as e:
-            raise CustomException(e,sys)
+            raise CustomException(e,sys) # type: ignore
         
 
     def initiate_data_transformation(self,train_path,test_path):
@@ -79,7 +81,7 @@ class DataTransformation():
 
                 logging.info("Obtaining Preprocessing Object")
                 
-                preprocessor_obj = self.get_data_transformer_object()
+                preprocessing_obj = self.get_data_transformer_object()
 
                 target_column_name="Revenue"
                 numerical_features = ['Administrative', 'Administrative_Duration', 'Informational', 'Informational_Duration', 'ProductRelated', 'ProductRelated_Duration', 'BounceRates', 'ExitRates', 'PageValues', 'SpecialDay']
@@ -92,26 +94,34 @@ class DataTransformation():
 
                 logging.info("Applying preprocessing object on training dataframe and testing dataframe.")
 
-                input_feature_train_arr=preprocessor_obj.fit_transform(input_feature_train_df)
-                input_feature_test_arr=preprocessor_obj.fit_transform(input_feature_test_df)
-
-                train_arr = np.c_[
-                      input_feature_train_arr, np.array(target_feature_train_df)
-                ]
+                input_feature_train_arr=preprocessing_obj.fit_transform(input_feature_train_df)
+                input_feature_test_arr=preprocessing_obj.transform(input_feature_test_df)
+                print(input_feature_train_arr.shape,input_feature_test_arr.shape)
+                print(target_feature_train_df.shape,target_feature_test_df.shape)
+                print("*"*44)
+                input_feature_train_arr = pd.DataFrame(input_feature_train_arr.toarray())
+                input_feature_test_arr = pd.DataFrame(input_feature_test_arr.toarray())
+                print(type(input_feature_train_arr))
+                train_arr = np.c_[input_feature_train_arr, np.array(target_feature_train_df)]
                 test_arr = np.c_[input_feature_test_arr, np.array(target_feature_test_df)]
+
+                
+                #test_arr = np.c_[input_feature_test_arr, np.array(target_feature_test_df)]
+
 
                 logging.info(f"Saved preprocessing object.")
 
                 save_object(
-                     file_path=self.data_transformation_config.preprocessor_obj_file_path,
-                     obj=preprocessor_obj
+
+                    file_path=self.data_transformation_config.preprocessor_obj_file_path,
+                    obj=preprocessing_obj
+
                 )
 
-                return ( 
+                return (
                     train_arr,
                     test_arr,
-                    self.data_transformation_config.preprocessor_obj_file_path  
+                    self.data_transformation_config.preprocessor_obj_file_path,
                 )
-
             except Exception as e:
-                 raise CustomException(e,sys)
+                raise CustomException(e,sys) # type: ignore
