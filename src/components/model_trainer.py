@@ -84,7 +84,7 @@ class ModelTrainer:
             predicted = best_model.predict(X_test)
 
             roc_auc_score_ = roc_auc_score(y_test,predicted)
-            logging.info(f"models: {best_model_score}")   
+            logging.info(f"models: {model_report}")   
             return roc_auc_score_
 
         except Exception as e:
