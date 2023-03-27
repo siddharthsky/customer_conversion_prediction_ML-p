@@ -60,7 +60,71 @@ class ModelTrainer:
                 "CatBoost Classifier": CatBoostClassifier()
             }
 
-            model_report:dict=evaluate_model(X_train=X_train,y_train=y_train,X_test =X_test,y_test=y_test,models=models)
+            params = {
+                    "Logistic Regression": {
+                        "penalty": ["l1", "l2"],
+                        "C": [0.1, 1, 10],
+                        "solver": ["liblinear"]
+                    },
+                    "K-Neighbors Classifier": {
+                        "n_neighbors": [3, 5, 7],
+                        "weights": ["uniform", "distance"]
+                    },
+                    "Decision Tree": {
+                        "criterion": ["gini", "entropy"],
+                        "max_depth": [None, 5, 10],
+                        "min_samples_split": [2, 5, 10],
+                        "min_samples_leaf": [1, 2, 4]
+                    },
+                    "Random Forest Classifier": {
+                        "n_estimators": [50, 100, 200],
+                        "criterion": ["gini", "entropy"],
+                        "max_depth": [None, 5, 10],
+                        "min_samples_split": [2, 5, 10],
+                        "min_samples_leaf": [1, 2, 4]
+                    },
+                    "Support Vector Machine": {
+                        "C": [0.1, 1, 10],
+                        "kernel": ["linear", "poly", "rbf", "sigmoid"],
+                        "gamma": ["scale", "auto"]
+                    },
+                    "Gradient Boosting": {
+                        "learning_rate": [0.1, 0.01, 0.001],
+                        "n_estimators": [50, 100, 200],
+                        "max_depth": [3, 5, 7],
+                        "subsample": [0.5, 0.8, 1],
+                        "max_features": ["sqrt", "log2", None]
+                    },
+                    "XGBoost Classifier": {
+                        "learning_rate": [0.1, 0.01, 0.001],
+                        "n_estimators": [50, 100, 200],
+                        "max_depth": [3, 5, 7],
+                        "subsample": [0.5, 0.8, 1],
+                        "colsample_bytree": [0.5, 0.8, 1]
+                    },
+                    "AdaBoost Classifier": {
+                        "learning_rate": [0.1, 0.01, 0.001],
+                        "n_estimators": [50, 100, 200],
+                        "algorithm": ["SAMME", "SAMME.R"]
+                    },
+                    "CatBoost Classifier": {
+                        "learning_rate": [0.1, 0.01, 0.001],
+                        "depth": [3, 5, 7],
+                        "l2_leaf_reg": [1, 3, 5, 7],
+                        "iterations": [50, 100, 200]
+                    }
+                }
+
+
+
+
+
+
+
+
+
+
+            model_report:dict=evaluate_model(X_train=X_train,y_train=y_train,X_test =X_test,y_test=y_test,models=models,param=params)
 
             # to get best model
             best_model_score = max(sorted(model_report.values()))
