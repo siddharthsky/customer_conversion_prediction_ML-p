@@ -41,11 +41,14 @@ def evaluate_model(X_train,y_train,X_test,y_test,models,param):
        
 
         for i in range(len(list(models))):
+            
             model =list(models.values())[i]
 
             para = param[list(models.keys())[i]]
 
-            gs = GridSearchCV(model,para)
+            logging.info(f"Searching Hyperparameters for {model}")
+
+            gs = GridSearchCV(model,para,cv=3)
 
             if model == KNeighborsClassifier() or model == DecisionTreeClassifier():
                 X_train = X_train.toarray()
@@ -54,6 +57,8 @@ def evaluate_model(X_train,y_train,X_test,y_test,models,param):
 
             gs.fit(X_train,y_train) # Grid Search for Best Parameters for model
 
+            logging.info(f"Found Hyperparameters for {model}")
+            
             model.set_params(**gs.best_params_)
   
   

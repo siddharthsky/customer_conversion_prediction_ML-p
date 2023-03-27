@@ -77,16 +77,16 @@ class ModelTrainer:
                         "min_samples_leaf": [1, 2, 4]
                     },
                     "Random Forest Classifier": {
-                        "n_estimators": [50, 100, 200],
-                        "criterion": ["gini", "entropy"],
-                        "max_depth": [None, 5, 10],
-                        "min_samples_split": [2, 5, 10],
-                        "min_samples_leaf": [1, 2, 4]
+                        #"n_estimators": [50, 100, 200],
+                        #"criterion": ["gini", "entropy"],
+                        #"max_depth": [ 5, 10],
+                        #"min_samples_split": [2, 5, 10],
+                        #"min_samples_leaf": [1, 2, 4]
                     },
                     "Support Vector Machine": {
                         "C": [0.1, 1, 10],
                         "kernel": ["linear", "poly", "rbf", "sigmoid"],
-                        "gamma": ["scale", "auto"]
+                        #"gamma": ["scale", "auto"]
                     },
                     "Gradient Boosting": {
                         "learning_rate": [0.1, 0.01, 0.001],
@@ -122,7 +122,7 @@ class ModelTrainer:
 
 
 
-
+            logging.info(f"Pointer was here")
 
             model_report:dict=evaluate_model(X_train=X_train,y_train=y_train,X_test =X_test,y_test=y_test,models=models,param=params)
 
