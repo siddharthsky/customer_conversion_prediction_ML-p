@@ -38,7 +38,6 @@ def save_object(file_path,obj):
 def evaluate_model(X_train,y_train,X_test,y_test,models,param):
     try:
         report ={}
-       
 
         for i in range(len(list(models))):
             
@@ -61,11 +60,7 @@ def evaluate_model(X_train,y_train,X_test,y_test,models,param):
             
             model.set_params(**gs.best_params_)
   
-  
             model.fit(X_train,y_train) # Train model
-
-
-
 
             #Make predictions
             y_train_pred = model.predict(X_train)
@@ -74,18 +69,17 @@ def evaluate_model(X_train,y_train,X_test,y_test,models,param):
             #Evaluate Train and Val dataset
             model_train_roc_auc =roc_auc_score(y_train, y_train_pred, average='macro', multi_class='ovo')
             model_test_roc_auc =roc_auc_score(y_test, y_test_pred, average='macro', multi_class='ovo')
-
+            report[list(models.keys())[i]] = model_test_roc_auc
+      
+        return report
+    except Exception as e:
+        raise CustomException(e,sys)
     
 
-            report[list(models.keys())[i]] = model_test_roc_auc
 
-        
-        
-
-            
-
-        return report
-
-
+def load_object(file_path):
+    try:
+        with open(file_path,"rb") as file_obj:
+            return dill.load(file_obj)
     except Exception as e:
         raise CustomException(e,sys)

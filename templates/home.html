@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Customer Conversion Prediciton</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </head>
+  <nav class="navbar bg-body-tertiary">
+    <div class="container-fluid mx-auto">
+      <a class="navbar-brand">Customer Conversion Prediciton</a>
+    </div>
+  </nav>
+  <body>
+	<div class="container">
+		<form method="POST" action="{{ url_for('predictt') }}">
+			<div class="form-group">
+				<label for="month">Month:</label>
+				<select class="form-control" name="month" id="month">
+					<option value="Jan">January</option>
+					<option value="Feb">February</option>
+					<option value="Mar">March</option>
+					<option value="Apr">April</option>
+					<option value="May">May</option>
+					<option value="Jun">June</option>
+					<option value="Jul">July</option>
+					<option value="Aug">August</option>
+					<option value="Sep">September</option>
+					<option value="Oct">October</option>
+					<option value="Nov">November</option>
+					<option value="Dec">December</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="visitortype">Visitor Type:</label>
+				<select class="form-control" name="visitortype" id="visitortype">
+					<option value="Returning_Visitor">Returning Visitor</option>
+					<option value="New_Visitor">New Visitor</option>
+					<option value="Other">Other</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="operatingsystems">Operating System:</label>
+				<input class="form-control" type="number" name="operatingsystems" id="operatingsystems" min="1" max="8">
+			</div>
+			<div class="form-group">
+				<label for="browser">Browser:</label>
+				<input class="form-control" type="number" name="browser" id="browser" min="1" max="13">
+			</div>
+			<div class="form-group">
+				<label for="region">Region:</label>
+				<input class="form-control" type="number" name="region" id="region" min="1" max="9">
+			</div>
+			<div class="form-group">
+				<label for="traffictype">Traffic Type:</label>
+				<input class="form-control" type="number" name="traffictype" id="traffictype" min="1" max="20">
+			</div>
+			<div class="form-group">
+				<label for="weekend">Weekend:</label>
+				<div class="form-check">
+					<input class="form-check-input" type="radio" name="weekend" id="weekend_yes" value="1">
+					<label class="form-check-label" for="weekend_yes">Yes</label>
+				</div>
+				<div class="form-check">
+					<input class="form-check-input" type="radio" name="weekend" id="weekend_no" value="0">
+					<label class="form-check-label" for="weekend_no">No</label>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="administrative">Administrative:</label>
+				<input type="number" class="form-control" name="administrative" id="administrative" step="0.01">
+			</div>
+			<div class="form-group">
+				<label for="administrative_duration">Administrative Duration:</label>
+				<input type="number" class="form-control" name="administrative_duration" id="administrative_duration" step="0.01">
+			</div>
+			<div class="form-group">
+				<label for="informational">Informational:</label>
+				<input type="number" class="form-control" name="informational" id="informational" step="0.01">
+			</div>
+			<div class="form-group">
+				<label for="informational_duration">Informational Duration:</label>
+				<input type="number" class="form-control" name="informational_duration" id="informational_duration" step="0.01">
+			</div>
+			<div class="form-group">
+				<label for="productrelated">Product Related:</label>
+				<input type="number" class="form-control" name="productrelated" id="productrelated" step="0.01">
+			</div>
+			<div class="form-group">
+				<label for="productrelated_duration">Product Related Duration:</label>
+				<input type="number" class="form-control" name="productrelated_duration" id="productrelated_duration" step="0.01">
+			</div>
+			<div class="form-group">
+				<label for="bouncerates">Bounce Rates:</label>
+				<input type="number" class="form-control" name="bouncerates" id="bouncerates" step="0.01" required>
+			</div>
+			<div class="form-group">
+				<label for="exitrates">Exit Rates:</label>
+				<input type="number" class="form-control" name="exitrates" id="exitrates" step="0.01" required>
+			</div>
+			<div class="form-group">
+				<label for="pagevalues">Page Values:</label>
+				<input type="number" class="form-control" name="pagevalues" id="pagevalues" step="0.01" required>
+			</div>
+			<div class="form-group">
+				<label for="specialday">Special Day:</label>
+				<input type="number" class="form-control" name="specialday" id="specialday" step="0.01" required>
+			</div>
+			<button type="submit" class="btn btn-primary">Predict</button>
+		</form>
+	</div>
+
+    <h1>
+        THE  prediction is {{results}}
+    </h1>
+
+	<!-- Add Bootstrap JS link -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
