@@ -15,11 +15,11 @@ application = Flask(__name__)
 app = application
 
 #Route for home page
-
 @app.route("/")
 def index():
     return render_template("index.html")
 
+#Route for prediction page
 @app.route('/predict',methods=['GET','POST']) # type: ignore
 def predictt():
     if request.method=='GET':
