@@ -1,4 +1,4 @@
-from src.utils import load_object
+
 import numpy as np
 import pandas as pd
 from src.logger import logging
