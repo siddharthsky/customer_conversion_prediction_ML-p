@@ -1,4 +1,5 @@
 import sys
+sys.path.append(os.getcwd())
 
 def error_message_details(er,er_detail:sys):
     _,_,exc_tb=er_detail.exc_info()
