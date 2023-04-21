@@ -16,12 +16,18 @@ To run the code in this repository, you will need the following:
 - numpy
 
 
-Installation
+### Installation
 1. Clone the repository:
 
-    git clone https://github.com/<username>/<repository>.git
+    `git clone https://github.com/<username>/<repository>.git`
 
 2. Install the required packages:
 
-    pip install -r requirements.txt
+    `pip install -r requirements.txt`
 
+### CI/CD Pipelines
+
+This project includes CI/CD pipelines to automate the testing, building, and deployment of the code. The pipelines are implemented using GitHub Actions and can be found in the .github/workflows directory.
+
+### References
+-------
