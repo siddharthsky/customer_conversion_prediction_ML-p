@@ -31,3 +31,6 @@ This project includes CI/CD pipelines to automate the testing, building, and dep
 
 ### References
 -------
+
+### License
+This project is licensed under the MIT License - see the LICENSE file for details.
