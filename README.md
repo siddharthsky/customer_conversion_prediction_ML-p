@@ -7,3 +7,6 @@ The project involves building a predictive model using machine learning algorith
 
 ### Data Collection
 The first step in this project is to collect data on website visitors. This data can be collected using various tools such as Google Analytics. Once the data is collected, it needs to be preprocessed and cleaned before it can be used for machine learning.
+
+##Feature Engineering
+After the data is cleaned, we need to engineer features that can be used by the machine learning algorithms. This involves selecting relevant features from the data and transforming them into a format that can be used by the algorithms.
