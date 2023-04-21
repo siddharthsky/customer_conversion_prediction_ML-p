@@ -4,3 +4,6 @@ This repository contains code and resources for predicting visitor-to-customer c
 
 ## Project Overview
 The project involves building a predictive model using machine learning algorithms to classify website visitors into two groups - those who are likely to make a purchase and those who are not. The data used for the project includes various features such as visitor location, time spent on the website, and product categories viewed.
+
+### Data Collection
+The first step in this project is to collect data on website visitors. This data can be collected using various tools such as Google Analytics. Once the data is collected, it needs to be preprocessed and cleaned before it can be used for machine learning.
