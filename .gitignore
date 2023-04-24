@@ -134,6 +134,13 @@ dmypy.json
 .pyre/
 temp.ipynb
 
+#artifacts
 artifacts/
 .artifacts
 /artifacts
+
+#extrix]
+/data-mix
+/settings
+/configuration
+/prodlicence
