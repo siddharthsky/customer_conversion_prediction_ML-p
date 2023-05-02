@@ -19,7 +19,7 @@ To run the code in this repository, you will need the following:
 ### Installation
 1. Clone the repository:
 
-    `https://github.com/siddharthsky/Customer_Conversion_Prediction_ML-p`
+    `git clone https://github.com/siddharthsky/Customer_Conversion_Prediction_ML-p`
 
 2. Install the required packages:
 
